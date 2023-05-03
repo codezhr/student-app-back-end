@@ -1,0 +1,7 @@
+<root>
+    <item name='org.mockito.BDDMockito org.mockito.BDDMockito.BDDMyOngoingStubbing&lt;T&gt; given(T)'>
+        <annotation name='org.jetbrains.annotations.Contract'>
+            <val val="&quot;_-&gt;new&quot;"/>
+        </annotation>
+    </item>
+</root>

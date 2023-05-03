@@ -1,23 +1,27 @@
 package com.example.demo.student;
 
 
+import com.example.demo.codeMassar.MassarCode;
+import com.example.demo.subject.Subject;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
 public class Student {
     @Id
-    @SequenceGenerator(
+   /* @SequenceGenerator(
             name = "student_sequence",
             sequenceName = "student_sequence",
             allocationSize = 1
-    )
+    ) */
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
+            strategy = GenerationType.IDENTITY
     )
     private Long id;
 
@@ -27,6 +31,14 @@ public class Student {
 
     @Transient
     private Integer age;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "massar_id", referencedColumnName = "id")
+    private MassarCode massarCode;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "studentsList", fetch = FetchType.LAZY)
+    private final List<Subject> subjectList = new ArrayList<>();
 
     public Student() {
     }
@@ -93,5 +105,17 @@ public class Student {
                 ", dob=" + dob +
                 ", age=" + age +
                 '}';
+    }
+
+    public MassarCode getMassarCode() {
+        return massarCode;
+    }
+
+    public void setMassarCode(MassarCode massarCode) {
+        this.massarCode = massarCode;
+    }
+
+    public List<Subject> getSubjectList() {
+        return subjectList;
     }
 }

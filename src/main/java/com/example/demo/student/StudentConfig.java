@@ -8,7 +8,8 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 
-@Configuration
+
+/*@Configuration*/
 public class StudentConfig {
 
     @Bean
